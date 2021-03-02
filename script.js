@@ -58,6 +58,7 @@ window.addEventListener('load',function(){
         .attr('width',xScale.bandwidth())
         .attr('height',(d)=>500-yScale(d.value))
         .attr('x',(d)=>xScale(d.key))
+        .attr('fill',(d)=>{return `rgb(${yScale(d.value)},${yScale(d.value)},${123})`;})
         .attr('fill-opacity',"50%")
         .attr('y',(d)=>yScale(d.value));
 
