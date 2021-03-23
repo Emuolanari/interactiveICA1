@@ -58,7 +58,14 @@ window.addEventListener('load',function(){
         .attr('x',(d)=>xScale(d.key))
         .attr('fill',(d)=>{return `rgb(${yScale(d.value)},${yScale(d.value)},${123})`;})
         .attr('fill-opacity',"50%")
-        .attr('y',(d)=>yScale(d.value));
+        .attr('y',(d)=>yScale(d.value))
+        .append('title').text((d)=>{return d.value});
+
+        //adding labels for axis
+        svg.append('text').attr('transform','translate(200,540)').text("Gender").attr("font-size",14)
+        .attr("font-weight",'Bold');
+        svg.append('text').attr('transform','translate(50,250),rotate(-90)').text("Population").attr("font-size",14)
+        .attr("font-weight",'Bold');
 
         //call axis 
         d3.select("svg").append("g").attr('transform','translate(0,500)').call(xAxsi);
