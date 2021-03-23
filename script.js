@@ -8,7 +8,6 @@ window.addEventListener('load',function(){
     .attr('id','svgMain');
 
     d3.json("attendancedata.json").then(function(data){
-        //if (error){return console.warn(error);} 
 
         let attendanceData = data.attendanceData;
 
@@ -16,7 +15,6 @@ window.addEventListener('load',function(){
             let studentDetails =  attendanceData[i];
             for (const key in studentDetails) {
                 //console.log(`${key}: ${studentDetails[key]}`);
-                //const propertyId = Object.keys(studentDetails);
                 let [studentId,gender] = [studentDetails.StudentID,studentDetails.Gender];
                 genderArray.push({studentId,gender});
             }  
@@ -25,14 +23,14 @@ window.addEventListener('load',function(){
         const uniqueGenderArray = Array.from(uniqueGenderSet).map(e => JSON.parse(e));
         
         //console.log(genderArray.length);
-        console.log(uniqueGenderArray);
+        //console.log(uniqueGenderArray);
 
         let genderCount = [];
         for (let i = 0; i < uniqueGenderArray.length; i++) {
             let num = uniqueGenderArray[i].gender;
             genderCount[num] = genderCount[num] ? genderCount[num]+1 : 1;
         }
-        console.log(genderCount);
+        //console.log(genderCount);
 
         for (const key in genderCount) {
             numberBasedOnGender.push({'key':key, 'value': genderCount[key]});
@@ -41,7 +39,7 @@ window.addEventListener('load',function(){
         
         //Get the total count for males and females for the yAxis
         const maxY = d3.max(numberBasedOnGender.map(function(d){return d.value;}));
-        console.log(numberBasedOnGender);
+        //console.log(numberBasedOnGender);
         //console.log(maxY);
         const xScale = d3.scaleBand().domain(numberBasedOnGender.map((d)=>d.key))
                 .range([100,400]).padding(0.1);
